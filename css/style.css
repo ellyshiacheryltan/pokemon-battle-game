@@ -1,0 +1,118 @@
+/****************************************/
+/*
+/*GENERAL (╯°□°)╯︵◓
+/*
+/***************************************/
+:root {
+    --yellow: #fcd453;
+    --red:#d04e31;
+    --electric: #ffef88;
+    --grass:#aab767;
+    --fire:#f26641;
+    --water:#5178f3;
+    --normal:#A8A77A;
+    --fighting:#C22E28;
+    --flying:#A98FF3;
+    --poison:#A33EA1;
+    --ground:#E2BF65;
+    --rock:#B6A136;
+    --bug:#A6B91A;
+    --ghost:#735797;
+    --steel:#B7B7CE;
+    --psychic:#F95587;
+    --ice:#96D9D6;
+    --dragon:#6F35FC;
+    --dark:#705746;
+    --fairy:#D685AD;
+    --normal:#fbdbe4;
+}
+
+*                                       { box-sizing: border-box; margin: 0; padding: 0; }
+body                                    { background: url("../img/xybattle.png")no-repeat; background-size: cover; }
+#pokemonlogo                            { max-width: 400px; width: 100%; display: block; margin: 1rem auto .5rem auto; }
+#headingOne                             { max-width: 350px; width: 100%; text-align: center; padding: 1rem; margin: 0 auto; background: linear-gradient(to bottom, #ff4d00, #CC0000); text-transform: uppercase; font-family: Arial, Helvetica, sans-serif; border-image: linear-gradient(to bottom, #3D7DCA 0%, #3B4CCA 100%) 1; border-width: 5px; border-style: solid; color: white; }
+#pokeball                               { max-width: 200px; width: 100%; display: block; margin: 8rem auto 3rem auto; cursor: pointer; animation: movingBall 1.5s ease-in-out alternate-reverse infinite; }
+@keyframes movingBall {
+    0% {
+        transform: translateX(-15%) rotateZ(-10deg);
+    }
+
+    100% {
+        transform: translateX(15%) rotateZ(10deg);
+    }
+}
+
+#pokeball:hover {
+    animation-duration: 0s;
+}
+
+#battlefield                            { display: flex; flex-direction: column; width: 100%; margin: 2.5rem auto 0 auto; display: none; }
+.pokecards                              { display: flex; justify-content: space-around; }
+.body_text                              { max-width: 250px; width: 100%; text-align: center; display: block; margin: 2rem auto 7rem auto; font-size: 18px; font-family:Arial, Helvetica, sans-serif; font-weight: bold; }
+.electric                               { background-color: var(--electric); }
+.grass                                  { background-color: var(--grass); }
+.fire                                   { background-color: var(--fire); }
+.water                                  { background-color: var(--water); }
+.fighting                               { background-color: var(--fighting); }
+.flying                                 { background-color: var(--flying); }
+.poison                                 { background-color: var(--poison); }
+.ground                                 { background-color: var(--ground); }
+.rock                                   { background-color: var(--rock); }
+.bug                                    { background-color: var(--bug); }
+.ghost                                  { background-color: var(--ghost); }
+.steel                                  { background-color: var(--steel); }
+.psychic                                { background-color: var(--psychic); }
+.ice                                    { background-color: var(--ice); }
+.dragon                                 { background-color: var(--dragon); }
+.dark                                   { background-color: var(--dark); }
+.fairy                                  { background-color: var(--fairy); }
+.normal                                 { background-color: var(--normal); }
+/****************************************/
+/*
+/*POKE CARDS (◍ㅇᆽㅇ◍)
+/*
+/***************************************/
+.pokecard                               { width: 400px; height: 550px; border-radius:10px; margin: 10px; filter: drop-shadow(5px 5px 10px #000000); position: relative;  transform: perspective(1600px); transform-style: preserve-3d; transition: all 0.4s ease; position: relative;}
+.pokecard .hover		                { height: 50%; position: absolute; width: 50%; z-index: 300; }
+.pokemon                                { padding: 15px; border-radius: 20px; transform: perspective(1600px); transform-style: preserve-3d; transition: all 0.4s ease; position: relative; border: 15px solid var(--yellow); }
+
+/*the fun movement stuff*/
+.pokemon::before                        { content: ""; display: block; height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+.pokemon>div                            { transform: translateZ(16px) scale(0.9); transition: all 0.4s ease; }
+.pokecard .tl                           { left: 0; top: 0; }
+.pokecard .tr                           { right: 0; top: 0; }
+.pokecard .bl       	                { left: 0; bottom: 0;}
+.pokecard .br     	                    { right: 0; bottom: 0; }
+
+.pokecard .tl:hover ~ .pokemon          { transform: perspective(1600px) rotateX(-5deg) rotateY(5deg);}
+.pokecard .tr:hover ~ .pokemon          { transform: perspective(1600px) rotateX(-5deg) rotateY(-5deg); }
+.pokecard .bl:hover ~ .pokemon          { transform: perspective(1600px) rotateX(5deg) rotateY(5deg); }
+.pokecard .br:hover ~ .pokemon          { transform: perspective(1600px) rotateX(5deg) rotateY(-5deg);}
+
+.pokecard .tl:hover ~ .pokemon:before    { background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 50%);}
+.pokecard .tr:hover ~ .pokemon:before    { background: linear-gradient(-135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 50%);}
+.pokecard .bl:hover ~ .pokemon:before    { background: linear-gradient(45deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 50%);}
+.pokecard .br:hover ~ .pokemon:before    { background: linear-gradient(-45deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 50%);}
+
+.pokecard .tl:hover ~ .pokemon>div       { transform: translate3d(-0.1px, -0.1px, 16px) scale(0.9);}
+.pokecard .tr:hover ~ .pokemon>div       { transform: translate3d(0.1px, -0.1px, 16px) scale(0.9);}
+.pokecard .bl:hover ~ .pokemon>div       { transform: translate3d(-0.1px, 0.1px, 16px) scale(0.9);}
+.pokecard .br:hover ~ .pokemon>div       { transform: translate3d(0.1px, 0.1px, 16px) scale(0.9);}
+
+.vs_text                                { scale: .7; height: 100%; margin: 7rem 0; }
+
+.pokemon h3                             { font-size: 15px; }
+.pokemon .basicinfo                     { display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; text-transform: capitalize; color: white; text-shadow: 0 0 10px black; }
+.pokemon .basicinfo p               { color: white; font-weight: bold; font-size: 20px;}
+.pokemon .img                           { border: 5px solid var(--yellow); filter: drop-shadow(5px 5px 10px #000000); background-color: rgb(255 255 252 / 25%); }
+.pokemon img                            { height: 200px; display: block; margin: 0 auto;}
+
+.control_btns                           { align-self: center; margin: -12rem auto; display: flex; }
+.control_btn                            { margin: 0 2rem; padding: 1rem 3rem; font-size: 22px; cursor: pointer; border-radius: 1rem; background: linear-gradient(to bottom, #ff4d00, #CC0000); border: 5px solid var(--yellow); box-shadow: 2px 3px 10px rgb(0, 0, 0, .5); font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: white; text-shadow: 0 0 10px rgb(0, 0, 0, .5); }
+.control_btn:hover                      { box-shadow: 0 0 5px rgb(0, 0, 0, .5); scale: .95; }
+
+/****************************************/
+/*some links
+https://guiguilegui.wordpress.com/2016/05/23/pokemon-type-classifier-using-their-colors/
+
+/***************************************/
