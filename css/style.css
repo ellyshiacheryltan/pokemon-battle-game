@@ -28,7 +28,7 @@
 }
 
 *                                       { box-sizing: border-box; margin: 0; padding: 0; }
-body                                    { background: url("../img/xybattle.png")no-repeat; background-size: cover; }
+body                                    { background: url("../img/xybattle.png")no-repeat; background-size: 120rem 100vh; overflow-x: hidden;}
 #pokemonlogo                            { max-width: 400px; width: 100%; display: block; margin: 1rem auto .5rem auto; }
 #headingOne                             { max-width: 350px; width: 100%; text-align: center; padding: 1rem; margin: 0 auto; background: linear-gradient(to bottom, #ff4d00, #CC0000); text-transform: uppercase; font-family: Arial, Helvetica, sans-serif; border-image: linear-gradient(to bottom, #3D7DCA 0%, #3B4CCA 100%) 1; border-width: 5px; border-style: solid; color: white; }
 #pokeball                               { max-width: 200px; width: 100%; display: block; margin: 8rem auto 3rem auto; cursor: pointer; animation: movingBall 1.5s ease-in-out alternate-reverse infinite; }
@@ -46,7 +46,8 @@ body                                    { background: url("../img/xybattle.png")
     animation-duration: 0s;
 }
 
-#battlefield                            { display: flex; flex-direction: column; width: 100%; margin: 2.5rem auto 0 auto; display: none; }
+#battlefield                            { display: flex; flex-direction: column; width: 100%; margin: 2.5rem auto 0 auto;}
+
 .pokecards                              { display: flex; justify-content: space-around; }
 .body_text                              { max-width: 250px; width: 100%; text-align: center; display: block; margin: 2rem auto 7rem auto; font-size: 18px; font-family:Arial, Helvetica, sans-serif; font-weight: bold; }
 .electric                               { background-color: var(--electric); }
@@ -73,6 +74,29 @@ body                                    { background: url("../img/xybattle.png")
 /*
 /***************************************/
 .pokecard                               { width: 400px; height: 550px; border-radius:10px; margin: 10px; filter: drop-shadow(5px 5px 10px #000000); position: relative;  transform: perspective(1600px); transform-style: preserve-3d; transition: all 0.4s ease; position: relative;}
+.pokecard.one.animate                   { animation: slideRight .5s linear forwards; }
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.pokecard.two.animate                   { animation: slideLeft .5s linear forwards; }
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
 .pokecard .hover		                { height: 50%; position: absolute; width: 50%; z-index: 300; }
 .pokemon                                { padding: 15px; border-radius: 20px; transform: perspective(1600px); transform-style: preserve-3d; transition: all 0.4s ease; position: relative; border: 15px solid var(--yellow); }
 
@@ -100,7 +124,29 @@ body                                    { background: url("../img/xybattle.png")
 .pokecard .br:hover ~ .pokemon>div       { transform: translate3d(0.1px, 0.1px, 16px) scale(0.9);}
 
 .vs_text                                { scale: .7; height: 100%; margin: 7rem 0; }
+#thunder                                { position: fixed; top: 0; height: 100vh; z-index: -1; opacity: 0; transition: opacity .2s; }
 
+@keyframes blinking {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
 .pokemon h3                             { font-size: 15px; }
 .pokemon .basicinfo                     { display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; text-transform: capitalize; color: white; text-shadow: 0 0 10px black; }
 .pokemon .basicinfo p               { color: white; font-weight: bold; font-size: 20px;}

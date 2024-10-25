@@ -28,23 +28,38 @@ let updatePokemonCard = (cardElement, pokemonData) => {
 
 // decide winner of Pokemon battle
 let decideWinner = () => {
-    let pokemonOne = cardElements[0].querySelector('h2').textContent.trim();
-    let pokemonTwo = cardElements[1].querySelector('h2').textContent.trim();
-    let pokemonOneStat = parseInt(cardElements[0].querySelector('span').textContent.trim());
-    let pokemonTwoStat = parseInt(cardElements[1].querySelector('span').textContent.trim());
+    const pokecards = document.querySelectorAll('.pokecard');
+    const thunder = document.getElementById('thunder');
 
-    if (pokemonOneStat > pokemonTwoStat) {
-        cardElements[1].style.scale = '.7';
-    } else if (pokemonOneStat < pokemonTwoStat) {
-        cardElements[0].style.scale = '.7';
-    } else {
-        alert ("It's a tie!")
+    pokecards.forEach(card => {
+        card.classList.add('animate');
+    })
+
+    function thunderStrike() {
+        thunder.style.zIndex = '2';
+        thunder.style.animation = 'blinking .5s linear forwards';
     }
 
-    console.log(pokemonOne);
-    console.log(pokemonTwo);
-    console.log(pokemonOneStat);
-    console.log(pokemonTwoStat);
+    setTimeout(thunderStrike, 400);
+
+    // let pokemonOne = cardElements[0].querySelector('h2').textContent.trim();
+    // let pokemonTwo = cardElements[1].querySelector('h2').textContent.trim();
+    // let pokemonOneStat = parseInt(cardElements[0].querySelector('span').textContent.trim());
+    // let pokemonTwoStat = parseInt(cardElements[1].querySelector('span').textContent.trim());
+
+    // if (pokemonOneStat > pokemonTwoStat) {
+    //     cardElements[1].style.scale = '.7';
+    // } else if (pokemonOneStat < pokemonTwoStat) {
+    //     cardElements[0].style.scale = '.7';
+    // } else {
+    //     alert ("It's a tie!")
+    // }
+
+    // console logs to check if correct data is successfully retrieved
+    // console.log(pokemonOne);
+    // console.log(pokemonTwo);
+    // console.log(pokemonOneStat);
+    // console.log(pokemonTwoStat);
 }
 
 // display random Pokemon in targeted HTML elements
@@ -60,26 +75,29 @@ let displayRandomPokemon = () => {
             })
     });
 
-    const battlefield = document.getElementById('battlefield');
-    const startInterface = document.getElementById('startInterface');
-    const pokemonLogo = document.getElementById('pokemonlogo');
-    const gameTitle = document.getElementById('headingOne');
+    // const battlefield = document.getElementById('battlefield');
+    // const startInterface = document.getElementById('startInterface');
+    // const pokemonLogo = document.getElementById('pokemonlogo');
+    // const gameTitle = document.getElementById('headingOne');
 
-    startInterface.style.display = 'none';
-    battlefield.style.display = 'flex';
-    pokemonLogo.style.scale = '.7';
-    gameTitle.style.scale = '.7';
-    gameTitle.style.marginTop = '-2.3rem';
+    // startInterface.style.display = 'none';
+    // battlefield.style.display = 'flex';
+    // pokemonLogo.style.scale = '.7';
+    // gameTitle.style.scale = '.7';
+    // gameTitle.style.marginTop = '-2.3rem';
 }
 
-// start game
-const startBtn = document.getElementById('pokeball');
-startBtn.addEventListener('click', displayRandomPokemon);
+// // start game
+// const startBtn = document.getElementById('pokeball');
+// startBtn.addEventListener('click', displayRandomPokemon);
 
-// reshuffle Pokemon battle pair
-const reshuffleBtn = document.getElementById('shuffleBtn');
-reshuffleBtn.addEventListener('click', displayRandomPokemon);
+// // reshuffle Pokemon battle pair
+// const reshuffleBtn = document.getElementById('shuffleBtn');
+// reshuffleBtn.addEventListener('click', displayRandomPokemon);
 
 // start battle
 const battleBtn = document.getElementById('battleBtn');
 battleBtn.addEventListener('click', decideWinner);
+
+// display random pokemons on load
+window.addEventListener('load', displayRandomPokemon);
