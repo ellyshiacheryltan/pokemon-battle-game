@@ -27,9 +27,11 @@ let updatePokemonCard = (cardElement, pokemonData) => {
 }
 
 // decide winner of Pokemon battle
-let decideWinner = () => {
+let decideWinner = (cardElement, pokemonData) => {
     const pokecards = document.querySelectorAll('.pokecard');
     const thunder = document.getElementById('thunder');
+    const whiteScreen = document.getElementById('white-screen');
+    const pokemonSprites = document.querySelectorAll('.poke_sprite');
 
     pokecards.forEach(card => {
         card.classList.add('animate');
@@ -40,7 +42,41 @@ let decideWinner = () => {
         thunder.style.animation = 'blinking .5s linear forwards';
     }
 
+    function removeThunder() {
+        thunder.style.zIndex = '-1';
+        thunder.style.opacity = '0';
+        thunder.style.animation = '';
+    }
+
+    function showWhiteScreen() {
+        whiteScreen.style.zIndex = '3';
+        whiteScreen.style.opacity = '1';
+    }
+
+    function removeWhiteScreen() {
+        whiteScreen.style.opacity = '0';
+        whiteScreen.style.zIndex = '-1';
+    }
+
+    function removePokecards() {
+        pokecards.forEach(card => {
+            card.style.opacity = '0';
+        })
+    }
+
+    function showPokeSprites() {
+        pokemonSprites.forEach(sprite => {
+            sprite.style.opacity = '1';
+        })
+    }
+
     setTimeout(thunderStrike, 400);
+    setTimeout(removeThunder, 1000);
+    setTimeout(showWhiteScreen, 450);
+    setTimeout(removeWhiteScreen, 1000);
+    setTimeout(removePokecards, 1000);
+    setTimeout(showPokeSprites, 1000);
+
 
     // let pokemonOne = cardElements[0].querySelector('h2').textContent.trim();
     // let pokemonTwo = cardElements[1].querySelector('h2').textContent.trim();
