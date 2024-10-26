@@ -27,11 +27,14 @@ let updatePokemonCard = (cardElement, pokemonData) => {
 }
 
 // decide winner of Pokemon battle
-let decideWinner = (cardElement, pokemonData) => {
+let decideWinner = () => {
     const pokecards = document.querySelectorAll('.pokecard');
     const thunder = document.getElementById('thunder');
     const whiteScreen = document.getElementById('white-screen');
-    const pokemonSprites = document.querySelectorAll('.poke_sprite');
+    const cardBackground = document.querySelectorAll('.pokemon');
+    const imgBackground = document.querySelectorAll('.img');
+    const controlBtns = document.querySelectorAll('.control_btns');
+    const VStext = document.getElementById('vs-text');
 
     pokecards.forEach(card => {
         card.classList.add('animate');
@@ -58,25 +61,26 @@ let decideWinner = (cardElement, pokemonData) => {
         whiteScreen.style.zIndex = '-1';
     }
 
-    function removePokecards() {
-        pokecards.forEach(card => {
-            card.style.opacity = '0';
-        })
-    }
+    function prepareBattlefield() {
+        cardBackground[0].className = 'battleCard one';
+        cardBackground[1].className = 'battleCard two';
 
-    function showPokeSprites() {
-        pokemonSprites.forEach(sprite => {
-            sprite.style.opacity = '1';
+        imgBackground.forEach(img => {
+            img.classList.remove('img');
         })
+
+        controlBtns.forEach(btn => {
+            btn.style.display = 'none';
+        })
+
+        VStext.style.display = 'none';
     }
 
     setTimeout(thunderStrike, 400);
     setTimeout(removeThunder, 1000);
     setTimeout(showWhiteScreen, 450);
     setTimeout(removeWhiteScreen, 1000);
-    setTimeout(removePokecards, 1000);
-    setTimeout(showPokeSprites, 1000);
-
+    setTimeout(prepareBattlefield, 1000);
 
     // let pokemonOne = cardElements[0].querySelector('h2').textContent.trim();
     // let pokemonTwo = cardElements[1].querySelector('h2').textContent.trim();
