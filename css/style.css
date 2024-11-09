@@ -46,7 +46,7 @@ body                                    { background: url("../img/xybattle.png")
     animation-duration: 0s;
 }
 
-#battlefield                            { display: flex; flex-direction: column; width: 100%; margin: 2.5rem auto 0 auto;}
+#battlefield                            { display: flex; flex-direction: column; width: 100%; margin: 2.5rem auto 0 auto; display: none;}
 
 .pokecards                              { display: flex; justify-content: space-around; }
 .body_text                              { max-width: 250px; width: 100%; text-align: center; display: block; margin: 2rem auto 7rem auto; font-size: 18px; font-family:Arial, Helvetica, sans-serif; font-weight: bold; }
@@ -154,9 +154,9 @@ body                                    { background: url("../img/xybattle.png")
 .pokemon img                            { height: 200px; display: block; margin: 0 auto;}
 .battleCard                             { display:block; max-width: 50rem; margin: 2rem auto;}
 .battleCard .basicinfo                  { display:flex; justify-content:space-between; align-items:center; color:white; font-weight: bold; font-size: 18px; text-transform: capitalize; }
-.stats_bar                              { width: 16.5rem; height: 1rem; border: 3px solid var(--red); border-radius: 1rem; }
+.stats_bar                              { width: 16.5rem; height: 1rem; border: 3px solid var(--red); border-radius: 1rem; display:none;}
 .stats                                  { width: 100%; height: 100%; background-color: var(--yellow); border-radius: 1rem; transition: width 1s;}
-.stats.weaker                           { width: 0%; }
+.stats.weaker                           { width: 0%; transition: width; transition-duration: 1000ms;}
 .battleCard img                         { scale: 2; display: block; margin: 7rem auto; animation: bounce .5s ease-in-out infinite alternate; }
 @keyframes bounce {
     0% {
@@ -167,16 +167,28 @@ body                                    { background: url("../img/xybattle.png")
         transform: translateY(6%);
     }
 }
-.battleCard.one.stronger img            { animation: attackRight .2s linear; }
+.battleCard.one.stronger img            { animation: attackRight .4s linear; }
 @keyframes attackRight {
     0% {
         transform: translateX(0%);
     }
 
     100% {
-        transform: translateX(250%);
+        transform: translateX(400%);
     }
 } 
+
+.battleCard.two.stronger img            { animation: attackLeft .4s linear; }
+@keyframes attackLeft {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-400%);
+    }
+} 
+
 .battleCard.one                         { animation: slideRightBattle .5s linear forwards; }
 @keyframes slideRightBattle {
     0% {
@@ -204,6 +216,16 @@ body                                    { background: url("../img/xybattle.png")
 .control_btn:hover                      { box-shadow: 0 0 5px rgb(0, 0, 0, .5); scale: .95; }
 
 #white-screen                           { position: fixed; width: 100vw; height: 100vh; top: 0; background-color: white; z-index: -1; opacity: 0; transition: opacity .5s ease-in;}
+
+#endInterface                           { position: fixed; width:100vw; height: auto; top:0; left:0; background-color: rgba(0, 0, 0, .3); backdrop-filter: blur(5px); font-family: Arial, Helvetica, sans-serif; font-weight: bold; display: none; }
+#endModal                               { width:50vw; height:50vh; background: linear-gradient(to bottom, rgb(130, 130, 130), rgb(158, 158, 158)); margin: 25vh auto; border-image: linear-gradient(to top, #3D7DCA 0%, #3B4CCA 100%) 1; border-width: 7px; border-style: solid; display: flex; flex-direction: column; align-items: center;}
+
+#endModal h2                            { text-transform: uppercase; font-size: 50px; margin-block: 4.5rem; color:#FFDE00; -webkit-text-stroke: 2.5px #3B4CCA;}
+
+.end-btns-container                     { width: 60%; display: flex; justify-content: space-between;}
+.end-btn                                { background: none; border:none; cursor: pointer;}
+.end-btn p                              { color:#CC0000; font-weight: bold; font-size: 20px; text-shadow:0 1px 3px rgba(0, 0, 0, .1)}
+.end-btn img                            { width:4rem; margin:1rem; }
 /****************************************/
 /*some links
 https://guiguilegui.wordpress.com/2016/05/23/pokemon-type-classifier-using-their-colors/
